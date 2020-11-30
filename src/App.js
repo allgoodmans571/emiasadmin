@@ -1,12 +1,11 @@
-import React from 'react'
-
+import Stages from './components/Stages'
 
 
 
 function App() {
   return (
-    <div className="App">
-      
+    <div>
+      <Stages />
     </div>
   );
 }
