@@ -1,14 +1,30 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 
 export default function Stages(props) {
 
-    const [actualStage, setActualStage] = useState();
     
 
-    function handleStages() {
+    async function handleActStages() {
+        console.log(document.querySelector('#actStage').value)
+        let data = {actual_stage: document.querySelector('#actStage').value}
         try {
-            console.log(document.querySelector('#actStage').value)
+            await fetch('http://165.22.192.121:3000/actual_stage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        body: JSON.stringify(data)
+      });
+        } catch (err) {
+            console.error(err);
+        }
+
+    }
+
+    function handleTotalStages() {
+        try {
+            console.log(document.querySelector('#totalStages').value)
         } catch (err) {
             console.error(err);
         }
@@ -24,7 +40,7 @@ export default function Stages(props) {
             <span className="input-group-text" id="inputGroup-sizing-default">Всего стадий</span>
             </div>
 
-            <input type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" style={{width: '1rem'}} />
+            <input id='totalStages' type="text" className="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" />
             <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroup-sizing-default" >Актальная стадия</span>
             </div>
@@ -33,7 +49,8 @@ export default function Stages(props) {
 
             
         </div>
-        <button className='btn-success'onClick={handleStages}> Отправить </button>
+        <button className='btn-success'onClick={handleActStages}> Отправить Всего стадий </button> <br />
+        <button className='btn-success'onClick={handleTotalStages}> Отправить Актальная стадия </button>
         </div>
 
 
