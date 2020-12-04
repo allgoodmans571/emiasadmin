@@ -1,23 +1,33 @@
-import React, { Component } from 'react';
-import './index.css'
-import Stages from './components/Stages';
-import Loader from './Loader/Loader';
-import Table from './Table/Table';
+import React, { Component } from "react";
+import "./index.css";
+import Stages from "./components/Stages";
+import Loader from "./Loader/Loader";
+import Table from "./Table/Table";
 
 class App extends Component {
-  state ={
+  state = {
     isLoading: true,
     data: [],
-  }
+  };
   async componentDidMount() {
-    const response = await fetch(` http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`)
-    const data = await response.json()
-    // console.log(data)
-    this.setState({
-      isLoading: false,
-      data
+    var data;
+    fetch("http://165.22.192.121:3000/get_people", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "GET",
     })
-
+      .then((response) => response.text())
+      .then((response) => {
+        console.log(response);
+        data = JSON.parse(response);
+        this.setState({
+          isLoading: false,
+          data,
+        });
+      })
+      .catch((err) => console.log(err));
   }
   render() {
     return (
@@ -25,13 +35,7 @@ class App extends Component {
         <div>
           <Stages />
         </div>
-      {
-        this.state.isLoading 
-        ? <Loader />
-        : <Table 
-        data={this.state.data}
-        />
-      }
+        {/* {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />} */}
       </div>
     );
   }
