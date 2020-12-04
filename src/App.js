@@ -20,8 +20,11 @@ class App extends Component {
     })
       .then((response) => response.text())
       .then((response) => {
-        console.log(response);
-        data = JSON.parse(response);
+        data = []
+        let raw_data = JSON.parse(response);
+        for (let i = 0; i < raw_data.status.length; i++) {
+          data.push(raw_data.status[i])
+        }
         this.setState({
           isLoading: false,
           data,
@@ -35,7 +38,7 @@ class App extends Component {
         <div>
           <Stages />
         </div>
-        {/* {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />} */}
+        {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />}
       </div>
     );
   }

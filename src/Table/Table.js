@@ -1,10 +1,12 @@
 import React from "react";
 
 export default (props) => (
+  
   <table className="table">
     <thead>
       <tr>
         <th>login</th>
+        <th>name</th>
         <th>Badges</th>
         <th>medals</th>
         <th>E-thanks</th>
@@ -12,19 +14,22 @@ export default (props) => (
         <th>ideas</th>
         <th>id</th>
       </tr>
-    </thead>
-    <tbody>
       {props.data.map((item) => (
-        <tr key={item.name}>
-          <td>{item.login}</td>
-          <td>{item.Badges}</td>
-          <td>{item.medals}</td>
-          <td>{item.thanks}</td>
-          <td>{item.like}</td>
-          <td>{item.ideas}</td>
-          <td>{item.id}</td>
+        <tr  key={item.name} >
+          <th>{item.login}</th>
+          <th>{item.name}</th>
+          <th>{item.Badges.toString()}</th>
+          <th>{item.medals.toString()}</th>
+          <th>{item.thanks.toString()}</th>
+          <th>{item.like.toString()}</th>
+          <th>{item.ideas.toString()}</th>
+          <th>{item.id}</th>
         </tr>
       ))}
+        
+    </thead>
+    <tbody>
+      
     </tbody>
   </table>
 );
