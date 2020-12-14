@@ -3,12 +3,15 @@ import "./index.css";
 import Stages from "./components/Stages";
 import Loader from "./Loader/Loader";
 import Table from "./Table/Table";
-
+import Journal from "./components/Journal.js";
 class App extends Component {
   state = {
     isLoading: true,
     data: [],
   };
+
+  url = "http://165.22.192.121:3000/";
+
   async componentDidMount() {
     var data;
     fetch("http://165.22.192.121:3000/get_people", {
@@ -20,10 +23,10 @@ class App extends Component {
     })
       .then((response) => response.text())
       .then((response) => {
-        data = []
+        data = [];
         let raw_data = JSON.parse(response);
         for (let i = 0; i < raw_data.status.length; i++) {
-          data.push(raw_data.status[i])
+          data.push(raw_data.status[i]);
         }
         this.setState({
           isLoading: false,
@@ -32,13 +35,19 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   }
+
   render() {
     return (
       <div className="container">
-        <div>
+        <div style={{ width: "100%" }}>
           <Stages />
         </div>
-        {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />}
+        <div style={{ width: "100%" }}>
+          <Journal url={this.url} />
+        </div>
+        <div>
+          {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />}
+        </div>
       </div>
     );
   }
