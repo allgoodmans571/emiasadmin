@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Journal extends Component {
   async componentDidMount() {
-    function bulletin_project() {
+      console.log(this.props.url);
       fetch(this.props.url + "bulletin_project", {
         headers: {
           Accept: "application/json",
@@ -21,7 +21,6 @@ export default class Journal extends Component {
           console.log(data);
         })
         .catch((err) => console.log(err));
-    }
   }
 
   render() {
