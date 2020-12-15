@@ -10,11 +10,11 @@ class App extends Component {
     data: [],
   };
 
-  url = "http://165.22.192.121:3000/";
+  url = "http://157.230.121.150:3000/";
 
   async componentDidMount() {
     var data;
-    fetch("http://165.22.192.121:3000/get_people", {
+    fetch(this.url + "get_people", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
