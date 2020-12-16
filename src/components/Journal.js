@@ -1,38 +1,42 @@
 import React, { Component } from "react";
 
-export default class Journal extends Component {
-  async componentDidMount() {
-    console.log(this.props.url);
-    fetch(this.props.url + "bulletin_project", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    })
-      .then((response) => response.text())
-      .then((response) => {
-        console.log(response);
-        let data = [];
-        let raw_data = JSON.parse(response);
-        for (let i = 0; i < raw_data.status.length; i++) {
-          data.push(raw_data.status[i]);
-        }
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  render() {
-    return (
-      <div
-        style={{
-          overflowY: "scroll",
-          height: "500px",
-          textAlign: "center",
-          backgroundColor: "green",
-        }}
-      ></div>
-    );
-  }
-}
+export default (props) => (
+  <div
+    style={{
+      overflowY: "scroll",
+      overflowX: "scroll",
+      width: "1000px",
+      height: "500px",
+      textAlign: "center",
+      backgroundColor: "green",
+    }}
+  >
+    <table
+      className="table"
+      style={{ textAlign: "center", justifyContent: "center" }}
+    >
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>name</th>
+          <th>Likes</th>
+          <th>text</th>
+          <th>image</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.jData.map((item) => (
+          <tr key={item.title}>
+            <td>{item.title}</td>
+            <td>{item.likes}</td>
+            <td>{item.status}</td>
+            <td>{item.text}</td>
+            <td>
+              <img src={item.img} style={{ width: "200px" }} />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);

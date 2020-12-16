@@ -4,6 +4,8 @@ export default (props) => (
   <div
     style={{
       overflowY: "scroll",
+      overflowX: "scroll",
+      width: "800px",
       height: "500px",
       textAlign: "center",
       backgroundColor: "grey",
@@ -22,20 +24,21 @@ export default (props) => (
           <th>ideas</th>
           <th>id</th>
         </tr>
+      </thead>
+      <tbody>
         {props.data.map((item) => (
           <tr key={item.name}>
-            <th>{item.login}</th>
-            <th>{item.name}</th>
-            <th>{item.Badges.toString()}</th>
-            <th>{item.medals.toString()}</th>
-            <th>{item.thanks.toString()}</th>
-            <th>{item.like.toString()}</th>
-            <th>{item.ideas.toString()}</th>
-            <th>{item.id}</th>
+            <td>{item.login}</td>
+            <td>{item.name}</td>
+            <td>{item.Badges.toString()}</td>
+            <td>{item.medals.toString()}</td>
+            <td>{item.thanks.toString()}</td>
+            <td>{item.like.toString()}</td>
+            <td>{item.ideas.toString()}</td>
+            <td>{item.id}</td>
           </tr>
         ))}
-      </thead>
-      <tbody></tbody>
+      </tbody>
     </table>
   </div>
 );
