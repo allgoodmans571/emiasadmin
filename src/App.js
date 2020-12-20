@@ -37,27 +37,27 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
 
-    fetch(this.url + "bulletin_project", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "GET",
-    })
-      .then((response) => response.text())
-      .then((response) => {
-        console.log(response);
-        let data = [];
-        let raw_data = JSON.parse(response);
-        for (let i = 0; i < raw_data.status.length; i++) {
-          data.push(raw_data.status[i]);
-        }
-        console.log(data);
-        let jData = data;
-        console.log(jData);
-        this.setState({ jData });
-      })
-      .catch((err) => console.log(err));
+    // fetch(this.url + "bulletin_project", {
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   method: "GET",
+    // })
+    //   .then((response) => response.text())
+    //   .then((response) => {
+    //     console.log(response);
+    //     let data = [];
+    //     let raw_data = JSON.parse(response);
+    //     for (let i = 0; i < raw_data.status.length; i++) {
+    //       data.push(raw_data.status[i]);
+    //     }
+    //     console.log(data);
+    //     let jData = data;
+    //     console.log(jData);
+    //     this.setState({ jData });
+    //   })
+    //   .catch((err) => console.log(err));
   }
 
   render() {
@@ -67,7 +67,7 @@ class App extends Component {
           <Stages />
         </div>
         <div style={{ width: "100%" }}>
-          <Journal jData={this.state.jData} />
+          <Journal jData={this.state.jData} url={this.url} />
         </div>
         <div>
           {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />}

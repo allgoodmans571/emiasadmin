@@ -5,7 +5,7 @@ export default (props) => (
     style={{
       overflowY: "scroll",
       overflowX: "scroll",
-      width: "800px",
+      width: "1000px",
       height: "500px",
       textAlign: "center",
       backgroundColor: "grey",
@@ -15,6 +15,7 @@ export default (props) => (
     <table className="table">
       <thead>
         <tr>
+          <th>id</th>
           <th>login</th>
           <th>name</th>
           <th>Badges</th>
@@ -22,12 +23,12 @@ export default (props) => (
           <th>E-thanks</th>
           <th>like</th>
           <th>ideas</th>
-          <th>id</th>
         </tr>
       </thead>
       <tbody>
         {props.data.map((item) => (
-          <tr key={item.name}>
+          <tr id={item.id} key={item.id}>
+            <td>{item.id}</td>
             <td>{item.login}</td>
             <td>{item.name}</td>
             <td>{item.Badges.toString()}</td>
@@ -35,7 +36,6 @@ export default (props) => (
             <td>{item.thanks.toString()}</td>
             <td>{item.like.toString()}</td>
             <td>{item.ideas.toString()}</td>
-            <td>{item.id}</td>
           </tr>
         ))}
       </tbody>
